@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
  * Per giocare crea un'istanza di questa classe e invoca il letodo gioca
  *
- * Questa e' la classe principale crea e istanzia tutte le altre
+ * Questa e' la classe principale crea e istanzia tutte le altre e anche luigi
  *
  * @author  docente di POO 
  *         (da un'idea di Michael Kolling and David J. Barnes) 
