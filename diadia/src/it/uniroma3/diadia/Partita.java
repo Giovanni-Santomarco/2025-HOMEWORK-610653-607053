@@ -1,6 +1,6 @@
-
-
-
+package it.uniroma3.diadia;
+import Labirinto;
+import Stanza;
 
 /**
  * Questa classe modella una partita del gioco
