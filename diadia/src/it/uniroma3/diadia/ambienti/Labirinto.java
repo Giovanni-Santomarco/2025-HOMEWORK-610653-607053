@@ -1,8 +1,9 @@
+package it.uniroma3.diadia.ambienti;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
  * questa classe crea la mappa di gioco
  */
-
 public class Labirinto {
 	
 	private Stanza stanzainiziale;
@@ -16,7 +17,6 @@ public class Labirinto {
 	/**
      * Crea tutte le stanze e le porte di collegamento
      */
-	
     public void init() {
 
 		/* crea gli attrezzi */
@@ -53,11 +53,16 @@ public class Labirinto {
 		stanzafinale = biblioteca;
     }
     
-    
+    /**
+     *restituisce la stanza iniziale
+     */
     public Stanza getStanzaIniziale() {
     	return this.stanzainiziale;
     }
     
+    /**
+     * restituisce la stanza finale
+     */
     public Stanza getStanzaFinale() {
     	return this.stanzafinale;
     }
