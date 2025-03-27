@@ -2,7 +2,10 @@ package it.uniroma3.diadia.giocatore;
 
 
 /**
- * classe per creare dei giocatori di colore
+ * classe che si occupa dei cfu (delle vite che il giocatore ha)
+ * 
+ * ogni giocatore ha 20 cfu_iniziali
+ * e una borsa che contiene i suoi oggetti
  */
 
 public class Giocatore {
