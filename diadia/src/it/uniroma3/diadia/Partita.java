@@ -26,7 +26,7 @@ public class Partita {
 		this.finita = false;
 		//this.cfu = CFU_INIZIALI;
 		stanzaCorrente = labirinto.getStanzaIniziale();
-		this.giocatore= new Giocatore();
+		this.giocatore = new Giocatore();
 	}
 
 	public void setStanzaCorrente(Stanza stanzaCorrente) {
@@ -59,6 +59,10 @@ public class Partita {
 	 */
 	public void setFinita() {
 		this.finita = true;
+	}
+	
+	public Giocatore getGiocatore() {
+		return this.giocatore;
 	}
 	
 	/*public int getCfu() {
