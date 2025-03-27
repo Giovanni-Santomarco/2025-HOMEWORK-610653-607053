@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.giocatore.Giocatore;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -31,7 +32,7 @@ public class DiaDia {
             "o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
             "Per conoscere le istruzioni usa il comando 'aiuto'.";
     
-    static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
+    static final private String[] elencoComandi = {"vai", "aiuto" , "fine" , "prendi"};
 
     private Partita partita;
 
@@ -67,6 +68,8 @@ public class DiaDia {
                 this.vai(comandoDaEseguire.getParametro());
             else if (comandoDaEseguire.getNome().equals("aiuto"))
                 this.aiuto();
+            else if (comandoDaEseguire.getNome().equals("prendi"))
+            	this.prendi(comandoDaEseguire.getParametro());
             else
                 System.out.println("Comando sconosciuto");
         }
@@ -113,6 +116,29 @@ public class DiaDia {
     private void fine() {
         System.out.println("Grazie di aver giocato!");  // si desidera smettere
     }
+    
+    /**
+     * comando prendi
+     * 
+     * serve per prendere un oggetto dalla stanza corrente
+     */
+    private void prendi(String NomeAttrezzo) {
+    	if(NomeAttrezzo!=null) {
+	    	if(this.partita.getStanzaCorrente().getAttrezzo(NomeAttrezzo)!=null) {
+	    		Attrezzo AttrezzoDaCancellare = this.partita.getStanzaCorrente().getAttrezzo(NomeAttrezzo);
+	    		if(this.partita.getGiocatore().getBorsa().addAttrezzo(AttrezzoDaCancellare)) {
+	    			this.partita.getStanzaCorrente().removeAttrezzo(AttrezzoDaCancellare);
+	    			System.out.println("oggetto preso");
+	    		}
+	    		else
+	    			System.out.println("borsa piena");
+	    	}
+    	}
+    	else
+    		System.out.println("comando inesistente");
+    	
+    }
+    
 
     public static void main(String[] argc) {
         DiaDia gioco = new DiaDia();

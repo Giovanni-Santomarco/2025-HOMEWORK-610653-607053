@@ -15,6 +15,7 @@ public class Giocatore {
     
     public Giocatore() {
         this.cfu = CFU_INIZIALI;
+        Borsa borsa = new Borsa();
     }
     
     public int getCfu() {
@@ -23,5 +24,9 @@ public class Giocatore {
 
     public void setCfu(int cfu) {
         this.cfu = cfu;     
-    }   
+    }
+    
+    public Borsa getBorsa() {
+    	return this.borsa;
+    }
 }
