@@ -188,6 +188,9 @@ public class Stanza {
         		}
         	}
         }
+        if(cancellato==true) {
+        	this.numeroAttrezzi--;
+        }
         return cancellato;
     }
 

@@ -60,4 +60,8 @@ public class Partita {
         return this.giocatore;
     }
     
+    public String toString() {
+    	return this.getStanzaCorrente()+"\nCfu = "+giocatore.getCfu();
+    }
+    
 }
