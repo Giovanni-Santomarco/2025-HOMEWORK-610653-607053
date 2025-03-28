@@ -15,7 +15,7 @@ public class Giocatore {
     
     public Giocatore() {
         this.cfu = CFU_INIZIALI;
-        Borsa borsa = new Borsa();
+        this.borsa = new Borsa();
     }
     
     public int getCfu() {

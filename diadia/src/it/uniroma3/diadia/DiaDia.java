@@ -120,7 +120,7 @@ public class DiaDia {
     /**
      * comando prendi
      * 
-     * serve per prendere un oggetto dalla stanza corrente
+     * serve per prendere un oggetto dalla stanza corrente e metterlo nella borsa
      */
     private void prendi(String NomeAttrezzo) {
     	if(NomeAttrezzo!=null) {
