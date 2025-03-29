@@ -64,4 +64,8 @@ public class Partita {
     	return this.getStanzaCorrente()+"\nCfu = "+giocatore.getCfu();
     }
     
+    public Labirinto getLabirinto() {
+    	return this.labirinto;
+    }
+    
 }

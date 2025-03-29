@@ -106,9 +106,11 @@ public class Borsa {
 			System.out.println("non ci sono attrezzi nella borsa");
 		}
 		else {
+			boolean cancellato=false;
 			for(int i=0; i<this.numeroAttrezzi; i++) {
 				if(this.attrezzi[i]!=null) {
 					if(this.attrezzi[i].getNome().equals(nomeAttrezzo)) {
+						cancellato=true;
 						a=attrezzi[i];
 						//se tolgliessi il primo elemento o non l'ultimo
 						if(i<numeroAttrezzi-1){
@@ -123,7 +125,9 @@ public class Borsa {
 					}
 				}
 			}
-			this.numeroAttrezzi--;
+			if(cancellato==true) {
+				this.numeroAttrezzi--;
+			}
 		}
 		
 		return a;
