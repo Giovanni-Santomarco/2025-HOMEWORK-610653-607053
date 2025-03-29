@@ -114,7 +114,7 @@ public class Borsa {
 						a=attrezzi[i];
 						//se tolgliessi il primo elemento o non l'ultimo
 						if(i<numeroAttrezzi-1){
-							for(int j=i; i<numeroAttrezzi; j++) {
+							for(int j=i; j<numeroAttrezzi; j++) {
 								attrezzi[j]=attrezzi[j+1];
 							}
 						}
