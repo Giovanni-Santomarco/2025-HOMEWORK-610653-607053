@@ -25,14 +25,8 @@ public class Partita {
         this.giocatore = new Giocatore();
     }
 
-    public boolean setStanzaCorrente(Stanza stanzaCorrente) {
-    	if(stanzaCorrente.getPorta().getStatoPorta()) {
-    		this.stanzaCorrente = stanzaCorrente;
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
+    public void setStanzaCorrente(Stanza stanzaCorrente) {
+        this.stanzaCorrente = stanzaCorrente;
     }
 
     public Stanza getStanzaCorrente() {
