@@ -1,6 +1,8 @@
 package it.uniroma3.diadia.ambienti;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
+
+
 /**
  * Classe Stanza - una stanza in un gioco di ruolo.
  * Una stanza e' un luogo fisico nel gioco.
@@ -26,6 +28,9 @@ public class Stanza {
 	private int numeroStanzeAdiacenti;
 
 	private String[] direzioni;
+	
+	private Porta porta;
+
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -38,6 +43,7 @@ public class Stanza {
 		this.direzioni = new String[NUMERO_MASSIMO_DIREZIONI];
 		this.stanzeAdiacenti = new Stanza[NUMERO_MASSIMO_DIREZIONI];
 		this.attrezzi = new Attrezzo[NUMERO_MASSIMO_ATTREZZI];
+		this.porta = new Porta();
 	}
 
 	/**
@@ -69,7 +75,9 @@ public class Stanza {
 		Stanza stanza = null;
 		for(int i=0; i<this.numeroStanzeAdiacenti; i++)
 			if (this.direzioni[i].equals(direzione))
-				stanza = this.stanzeAdiacenti[i];
+				if(porta.getStatoPorta()) {
+					stanza = this.stanzeAdiacenti[i];
+				}
 		return stanza;
 	}
 
@@ -204,4 +212,23 @@ public class Stanza {
 		return direzioni;
 	}
 
+	public boolean addPorta(String nomePorta, String chiaveAssociata) {
+		//per il momento una stanza può avere solo una porta
+		if(this.porta.getNomePorta().equals("nessuna porta")) {
+		this.porta.setNomePorta(nomePorta);
+		this.porta.setStatoPorta(false);
+		this.porta.setChiaveAssociata(chiaveAssociata);
+		return true;
+		}
+		return false;
+	}
+	
+	public Porta getPorta() {
+		return this.porta;
+	}
+	
+	public int getNumeroStanzeAdiacenti() {
+		return this.numeroStanzeAdiacenti;
+	}
+	
 }

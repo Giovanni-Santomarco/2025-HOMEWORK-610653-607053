@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 
 import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.giocatore.Giocatore;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.attrezzi.Chiave;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -32,7 +32,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-	static final private String[] elencoComandi = {"vai", "aiuto" , "fine" , "prendi", "posa"};
+	static final private String[] elencoComandi = {"vai", "aiuto" , "fine" , "prendi", "posa", "inventario"};
 
 	private Partita partita;
 
@@ -72,6 +72,8 @@ public class DiaDia {
 				this.prendi(comandoDaEseguire.getParametro());
 			else if	(comandoDaEseguire.getNome().equals("posa"))
 				this.posa(comandoDaEseguire.getParametro());
+			else if (comandoDaEseguire.getNome().equals("inventario"))
+				this.inventario();
 			else
 				System.out.println("Comando sconosciuto");
 		}
@@ -111,9 +113,21 @@ public class DiaDia {
 		if (prossimaStanza == null)
 			System.out.println("Direzione inesistente");
 		else {
-			this.partita.setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getGiocatore().getCfu();
-			this.partita.getGiocatore().setCfu(cfu-1);
+			//se la porta è chiusa
+			if(this.partita.getStanzaCorrente().getStanzaAdiacente(direzione).getPorta().getStatoPorta()==false) {
+				//se hai la chiave
+				if(this.partita.getGiocatore().getBorsa().hasAttrezzo(this.partita.getStanzaCorrente().getStanzaAdiacente(direzione).getPorta().getChiaveAssociata())) {
+					Chiave key = (Chiave) this.partita.getGiocatore().getBorsa().getAttrezzo(this.partita.getStanzaCorrente().getStanzaAdiacente(direzione).getPorta().getChiaveAssociata());
+					key.apriPorta(this.partita.getStanzaCorrente().getStanzaAdiacente(direzione).getPorta());
+				}
+			}
+			if(this.partita.setStanzaCorrente(prossimaStanza)) {
+				int cfu = this.partita.getGiocatore().getCfu();
+				this.partita.getGiocatore().setCfu(cfu-1);
+			}
+			else {
+				System.out.println("la porta è chiusa");
+			}
 		}
 		//System.out.println(partita.getStanzaCorrente().getDescrizione());
 		
@@ -175,6 +189,11 @@ public class DiaDia {
 			else
 				System.out.println("oggetto non presente in borsa");
 		}
+	}
+	
+	
+	private void inventario() {
+		System.out.println( this.partita.getGiocatore().getBorsa());
 	}
 
 
