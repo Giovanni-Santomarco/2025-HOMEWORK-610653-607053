@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.ambienti;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.attrezzi.Chiave;
 
 /**
  * questa classe crea la mappa di gioco
@@ -22,6 +23,7 @@ public class Labirinto {
         /* crea gli attrezzi */
         Attrezzo lanterna = new Attrezzo("lanterna",3);
         Attrezzo osso = new Attrezzo("osso",1);
+        Chiave chiaveBiblioteca = new Chiave("chiaveBiblioteca", 1);
         
         /* crea stanze del labirinto */
         Stanza atrio = new Stanza("Atrio");
@@ -29,6 +31,7 @@ public class Labirinto {
         Stanza aulaN10 = new Stanza("Aula N10");
         Stanza laboratorio = new Stanza("Laboratorio Campus");
         Stanza biblioteca = new Stanza("Biblioteca");
+        biblioteca.addPorta("PortaBiblioteca", "chiaveBiblioteca"); 
         
         /* collega le stanze */
         atrio.impostaStanzaAdiacente("nord", biblioteca);
@@ -47,6 +50,7 @@ public class Labirinto {
         /* pone gli attrezzi nelle stanze */
         aulaN10.addAttrezzo(lanterna);
         atrio.addAttrezzo(osso);
+        aulaN11.addAttrezzo(chiaveBiblioteca);
 
         // il gioco comincia nell'atrio
         stanzainiziale = atrio;  

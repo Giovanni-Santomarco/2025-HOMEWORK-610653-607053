@@ -14,7 +14,7 @@ import it.uniroma3.diadia.ambienti.Stanza;
  */
 public class Attrezzo {
 
-    private String nome;
+    protected String nome;
     private int peso;
 
     /**
