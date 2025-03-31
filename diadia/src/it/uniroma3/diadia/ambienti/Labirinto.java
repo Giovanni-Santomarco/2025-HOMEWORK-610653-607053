@@ -67,7 +67,4 @@ public class Labirinto {
         return this.stanzafinale;
     }
     
-    
-    
-    
 }

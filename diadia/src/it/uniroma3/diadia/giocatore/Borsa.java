@@ -103,7 +103,7 @@ public class Borsa {
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
 		if(this.numeroAttrezzi==0) {
-			System.out.println("non ci sono attrezzi nella borsa");
+			return a;
 		}
 		else {
 			boolean cancellato=false;
