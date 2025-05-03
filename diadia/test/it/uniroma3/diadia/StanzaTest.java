@@ -7,7 +7,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-class Stanzatest {
+class StanzaTest {
 	private Stanza stanza;
 	private Stanza stanzaAdiacente;
 	private Attrezzo spada;

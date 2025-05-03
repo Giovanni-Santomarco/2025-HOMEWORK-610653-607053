@@ -1,5 +1,8 @@
-package it.uniroma3.diadia;
+package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.IO;
+
+import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoPosa implements Comando {
@@ -7,7 +10,7 @@ public class ComandoPosa implements Comando {
 	private String NomeAttrezzo;
 	
 	@Override
-	public void esegui(Partita partita, IOConsole console) {
+	public void esegui(Partita partita, IO io) {
 		if(NomeAttrezzo!=null) {
 			//se è presente l'attrezzo NomeAttrezzo in borsa
 			if(partita.getGiocatore().getBorsa().getAttrezzo(NomeAttrezzo)!=null) {
@@ -17,13 +20,13 @@ public class ComandoPosa implements Comando {
 				if(partita.getStanzaCorrente().addAttrezzo(attrezzoDaPosare)) {
 					//rimuovo allora l'oggetto dalla borsa
 					partita.getGiocatore().getBorsa().removeAttrezzo(NomeAttrezzo);
-					console.mostraMessaggio("oggetto posato");
+					io.mostraMessaggio("oggetto posato");
 				}
 				else
-					console.mostraMessaggio("la stanza è piena di oggetti");
+					io.mostraMessaggio("la stanza è piena di oggetti");
 			}
 			else
-				console.mostraMessaggio("oggetto non presente in borsa");
+				io.mostraMessaggio("oggetto non presente in borsa");
 		}
 	}
 

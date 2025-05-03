@@ -29,4 +29,8 @@ public class Giocatore {
     public Borsa getBorsa() {
     	return this.borsa;
     }
+    
+    public boolean giocatoreIsVivo() {
+    	return this.cfu>0;
+    }
 }

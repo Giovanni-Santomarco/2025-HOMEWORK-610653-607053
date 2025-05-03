@@ -1,10 +1,14 @@
-package it.uniroma3.diadia;
+package it.uniroma3.diadia.comandi;
+
+import it.uniroma3.diadia.IO;
+
+import it.uniroma3.diadia.Partita;
 
 public class ComandoGuarda implements Comando {
 
 	@Override
-	public void esegui(Partita partita, IOConsole console) {
-		console.mostraMessaggio(partita.toString());
+	public void esegui(Partita partita, IO io) {
+		io.mostraMessaggio(partita.toString());
 	}
 
 	@Override

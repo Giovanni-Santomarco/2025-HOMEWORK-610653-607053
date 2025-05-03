@@ -1,8 +1,9 @@
 package it.uniroma3.diadia;
 
 
-import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.FabbricaDiComandi;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -30,21 +31,21 @@ public class DiaDia {
 
 
 	private Partita partita;
-	private IOConsole console;
+	private IO io;
 
 
-	public DiaDia(IOConsole console) {
+	public DiaDia(IO io) {
 		this.partita = new Partita();
-		this.console = console;
+		this.io = io; 
 	}
 
 	public void gioca() {
 		String istruzione; 
 
 
-		console.mostraMessaggio(MESSAGGIO_BENVENUTO);      
+		io.mostraMessaggio(MESSAGGIO_BENVENUTO);      
 		do      
-			istruzione = console.leggiRiga();
+			istruzione = io.leggiRiga();
 		while (!processaIstruzione(istruzione));
 	}   
 
@@ -58,23 +59,24 @@ public class DiaDia {
 	private boolean processaIstruzione(String istruzione) {
 		Comando comandoDaEseguire;
 		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
-				comandoDaEseguire = factory.costruisciComando(istruzione);
-		comandoDaEseguire.esegui(this.partita, this.console);
+		comandoDaEseguire = factory.costruisciComando(istruzione);
+		comandoDaEseguire.esegui(this.partita, this.io);
 		if (this.partita.vinta())
 
-			System.out.println("Hai vinto!");
-		if (!this.partita.giocatoreIsVivo())
+			io.mostraMessaggio("Hai vinto!");
+		if (!this.partita.getGiocatore().giocatoreIsVivo() && !this.partita.vinta())
 
-			System.out.println("Hai esaurito i CFU...");
+			io.mostraMessaggio("Hai esaurito i CFU...\nGrazie di aver giocato!");
 
+		//forse dovresti mettere setFinita()
 		return this.partita.isFinita();
 	}
 
 
 
 	public static void main(String[] argc) {
-		IOConsole console = new IOConsole();
-		DiaDia gioco = new DiaDia(console);
+		IO io = new IOConsole();
+		DiaDia gioco = new DiaDia(io);
 		gioco.gioca();
 	}
 }

@@ -61,15 +61,11 @@ public class Partita {
     }
     
     public String toString() {
-    	return this.getStanzaCorrente()+"\nCfu = "+giocatore.getCfu();
+    	return (this.stanzaCorrente+"\nCfu = " + this.giocatore.getCfu());
     }
     
     public Labirinto getLabirinto() {
     	return this.labirinto;
-    }
-    
-    public boolean giocatoreIsVivo() {
-    	return this.giocatore.getCfu()>0;
     }
     
 }

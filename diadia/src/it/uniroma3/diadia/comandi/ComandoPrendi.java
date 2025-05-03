@@ -1,5 +1,8 @@
-package it.uniroma3.diadia;
+package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.IO;
+
+import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoPrendi implements Comando {
@@ -7,7 +10,7 @@ public class ComandoPrendi implements Comando {
 	private String NomeAttrezzo;
 
 	@Override
-	public void esegui(Partita partita, IOConsole console) {
+	public void esegui(Partita partita, IO io) {
 		if(NomeAttrezzo!=null) {
 			//controlla se l'attrezzo nomeAttrezzo é presente nella stanza
 			if(partita.getStanzaCorrente().getAttrezzo(NomeAttrezzo)!=null) {
@@ -17,16 +20,16 @@ public class ComandoPrendi implements Comando {
 				if(partita.getGiocatore().getBorsa().addAttrezzo(AttrezzoDaCancellare)) {
 					//lo rimuovo dalla stanza
 					partita.getStanzaCorrente().removeAttrezzo(AttrezzoDaCancellare);
-					console.mostraMessaggio("oggetto preso");
+					io.mostraMessaggio("oggetto preso");
 				}
 				else
-					console.mostraMessaggio("borsa piena");
+					io.mostraMessaggio("borsa piena");
 			}
 			else
-				console.mostraMessaggio("oggetto non trovato nella stanza");
+				io.mostraMessaggio("oggetto non trovato nella stanza");
 		}
 		else
-			console.mostraMessaggio("comando inesistente");
+			io.mostraMessaggio("comando inesistente");
 	}
 
 	@Override
