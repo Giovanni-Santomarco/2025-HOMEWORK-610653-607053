@@ -9,7 +9,7 @@ package it.uniroma3.diadia.giocatore;
  */
 
 public class Giocatore {
-    static final private int CFU_INIZIALI = 3;
+    static final private int CFU_INIZIALI = 7;
     private int cfu;
     private Borsa borsa;
     
@@ -32,5 +32,9 @@ public class Giocatore {
     
     public boolean giocatoreIsVivo() {
     	return this.cfu>0;
+    }
+    
+    public String toString() {
+    	return this.cfu +"\n"+ this.borsa.toString();
     }
 }

@@ -26,7 +26,9 @@ public class ComandoVai implements Comando {
 			return;
 		}
 		partita.setStanzaCorrente(prossimaStanza);
-		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
+		if(prossimaStanza!=stanzaCorrente) {
+			partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
+		}
 		io.mostraMessaggio(partita.toString());
 	}
 

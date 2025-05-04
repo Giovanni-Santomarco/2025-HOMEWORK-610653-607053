@@ -61,7 +61,7 @@ public class Partita {
     }
     
     public String toString() {
-    	return (this.stanzaCorrente+"\nCfu = " + this.giocatore.getCfu());
+    	return (this.stanzaCorrente.getDescrizione()+"\ncfu: "+this.giocatore.toString());
     }
     
     public Labirinto getLabirinto() {
