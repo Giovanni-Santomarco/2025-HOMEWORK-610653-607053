@@ -1,5 +1,10 @@
 package it.uniroma3.diadia.ambienti;
 
+/*
+ * 	questa stanza non ti permette di vedere le uscite solo c'è una lanterna nella stanza
+ * 
+ */
+
 public class StanzaBuia extends Stanza {
 
 	public StanzaBuia(String nome) {
