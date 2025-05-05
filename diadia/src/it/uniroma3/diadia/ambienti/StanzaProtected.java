@@ -3,18 +3,18 @@ package it.uniroma3.diadia.ambienti;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class StanzaProtected {
-	static final protected int NUMERO_MASSIMO_DIREZIONI = 4;
-	static final protected int NUMERO_MASSIMO_ATTREZZI = 10;
+	static final private int NUMERO_MASSIMO_DIREZIONI = 4;
+	static final private int NUMERO_MASSIMO_ATTREZZI = 10;
 
-	protected String nome;
+	private String nome;
 
 	protected Attrezzo[] attrezzi;
 	protected int numeroAttrezzi;
 
-	protected Stanza[] stanzeAdiacenti;
-	protected int numeroStanzeAdiacenti;
+	private Stanza[] stanzeAdiacenti;
+	private int numeroStanzeAdiacenti;
 
-	protected String[] direzioni;
+	private String[] direzioni;
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.

@@ -10,6 +10,7 @@ public class StanzaBloccata extends Stanza {
 		this.direzioneBloccata = direzioneBloccata;
 		this.chiave = chiave;
 	}
+	
 	@Override
 	public Stanza getStanzaAdiacente(String direzione) {
 		Stanza stanza = this;
