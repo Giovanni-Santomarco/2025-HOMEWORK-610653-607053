@@ -1,5 +1,6 @@
 package it.uniroma3.diadia;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +32,7 @@ class ComandoPrendiTest {
 		prendi.setParametro(att);
 		prendi.esegui(partita, console);
 		assertTrue(partita.getGiocatore().getBorsa().hasAttrezzo(this.attrezzo.getNome()));
-		assertTrue(partita.getStanzaCorrente().hasAttrezzo(this.attrezzo.getNome()));
+		assertFalse(partita.getStanzaCorrente().hasAttrezzo(this.attrezzo.getNome()));
 		
 	}
 }

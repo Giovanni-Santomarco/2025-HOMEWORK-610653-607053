@@ -32,7 +32,7 @@ class ComandoPosaTest {
 		posa.setParametro(att);
 		posa.esegui(partita, console);
 		assertTrue(this.partita.getStanzaCorrente().hasAttrezzo(att));
-		assertTrue(this.partita.getGiocatore().getBorsa().hasAttrezzo(att));
+		assertFalse(this.partita.getGiocatore().getBorsa().hasAttrezzo(att));
 		
 	}
 }
