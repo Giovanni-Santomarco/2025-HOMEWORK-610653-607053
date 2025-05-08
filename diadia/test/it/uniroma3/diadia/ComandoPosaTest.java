@@ -1,41 +1,38 @@
 package it.uniroma3.diadia;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.ComandoPosa;
-import it.uniroma3.diadia.comandi.ComandoPrendi;
 
 class ComandoPosaTest {
-	
+	private ComandoPosa posa;
 	private Partita partita;
 	private IOConsole console;
-	private ComandoPosa posa;
-	private ComandoPrendi prendi;
-
+	private String att;
+	private Attrezzo corno;
+	
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() throws Exception{
+		this.posa = new ComandoPosa();
 		this.partita = new Partita();
 		this.console = new IOConsole();
-		this.prendi = new ComandoPrendi();
-		this.posa = new ComandoPosa();
-		this.prendi.setParametro("lancia");
-		prendi.esegui(partita, console);
-		this.prendi.setParametro("osso");
-		prendi.esegui(partita, console);
+		this.corno = new Attrezzo("corno", 1);
+		this.att= "corno";
+		this.partita.getGiocatore().getBorsa().addAttrezzo(corno);
+		
+		
+		
 	}
-
 	@Test
 	void test() {
-		this.posa.setParametro("osso");
-		this.posa.esegui(partita, console);
-		//
-		this.posa.setParametro("scudo");
-		this.posa.esegui(partita, console);
-		//
-		this.posa.setParametro("lancia");
-		this.posa.esegui(partita, console);
-		//
+		posa.setParametro(att);
+		posa.esegui(partita, console);
+		assertTrue(this.partita.getStanzaCorrente().hasAttrezzo(att));
+		assertTrue(this.partita.getGiocatore().getBorsa().hasAttrezzo(att));
+		
 	}
-
 }

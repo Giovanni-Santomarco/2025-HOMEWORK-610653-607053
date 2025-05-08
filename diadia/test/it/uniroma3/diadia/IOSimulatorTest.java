@@ -1,24 +1,16 @@
 package it.uniroma3.diadia;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 
-/**
- * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
- * Per giocare crea un'istanza di questa classe e invoca il letodo gioca
- *
- * Questa e' la classe principale crea e istanzia tutte le altre e anche luigi
- *
- * @author  docente di POO 
- *         (da un'idea di Michael Kolling and David J. Barnes) 
- *          
- * @version base
- */
-
-public class DiaDia {
-
+class IOSimulatorTest {
+	
+	private IOSimulator io;
+	private Partita partita;
 	static final private String MESSAGGIO_BENVENUTO = ""+
 			"Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n" +
 			"Meglio andare al piu' presto in biblioteca a studiare. Ma dov'e'?\n"+
@@ -29,16 +21,14 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-
-	private Partita partita;
-	private IO io;
-
-
-	public DiaDia(IO io) {
+	@BeforeEach
+	void setUp() throws Exception {
+		String[] input1 = {"vai nord","vai sud", "guarda", "prendi lanterna", "guarda", "vai nord", "prendi osso", "prendi lancia", "prendi scudo",
+				"vai est", "prendi chiave", "vai ovest", "vai nord", "posa chiave", "guarda", "vai nord"};
+		this.io = new IOSimulator(input1);
 		this.partita = new Partita();
-		this.io = io; 
 	}
-
+	
 	public void gioca() {
 		String istruzione; 
 
@@ -71,11 +61,25 @@ public class DiaDia {
 		return this.partita.isFinita();
 	}
 
-
-
-	public static void main(String[] argc) {
-		IO io = new IOConsole();
-		DiaDia gioco = new DiaDia(io);
-		gioco.gioca();
+	@Test
+	void test() {
+		System.out.println("PARTITA 1 (per provare stanzaBloccata e stanzaBuia)\n");
+		this.gioca();
+		
+		
+		String[] input2 = {"prendi lancia", "vai est", "prendi chiave", "vai est", "posa lancia", "prendi lancia", "posa lancia", "prendi lancia",
+				"posa lancia", "prendi lancia", "posa lancia", "prendi lancia", "prendi aicnal", "posa chiave", "prendi chiave", "prendi evaihc",
+				"posa evaihc", "prendi chiave", "posa aicnal", "guarda", "prendi chiave", "vai est", "posa chiave", "vai nord"};
+		this.io = new IOSimulator(input2);
+		this.partita = new Partita();
+		System.out.println("\n\n\nPARTITA 2 (per provare StanzaMagica)\n");
+		this.gioca();
+		
+		String[] input3= {"aiuto", "", "vai", "vai nordEst", "prendi lancia", "prendi scudo", "prendi lanterna", "prendi", "posa lancia", "posa scudo", "fine"};
+		this.io = new IOSimulator(input3);
+		this.partita = new Partita();
+		System.out.println("\n\n\nPARTITA 3 (per provare gli altri comandi)\n");
+		this.gioca();
 	}
+
 }

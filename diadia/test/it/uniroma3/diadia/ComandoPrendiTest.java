@@ -1,37 +1,37 @@
 package it.uniroma3.diadia;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.ComandoPrendi;
 
 class ComandoPrendiTest {
-	
+	private ComandoPrendi prendi;
+	private Attrezzo attrezzo;
 	private Partita partita;
 	private IOConsole console;
-	private ComandoPrendi prendi;
+	private String att;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		this.prendi = new ComandoPrendi();
-		this.prendi.setParametro("lancia");
+		this.attrezzo = new Attrezzo("chiave", 1);
 		this.partita = new Partita();
-		this.console = new IOConsole();
+		this.console= new IOConsole();
+		this.att = "chiave";
+		partita.getStanzaCorrente().addAttrezzo(attrezzo);
+		
 	}
 
 	@Test
 	void eseguiTest() {
+		prendi.setParametro(att);
 		prendi.esegui(partita, console);
-		//"oggetto preso"
-		this.prendi.setParametro("scudo");
-		prendi.esegui(partita, console);
-		//"borsa piena"
-		this.prendi.setParametro("pork");
-		prendi.esegui(partita, console);
-		this.prendi.setParametro(null);
-		//"oggetto non trovato nella stanza"
-		prendi.esegui(partita, console);
-		//"comando inesistente"
+		assertTrue(partita.getGiocatore().getBorsa().hasAttrezzo(this.attrezzo.getNome()));
+		assertTrue(partita.getStanzaCorrente().hasAttrezzo(this.attrezzo.getNome()));
+		
 	}
-
 }
