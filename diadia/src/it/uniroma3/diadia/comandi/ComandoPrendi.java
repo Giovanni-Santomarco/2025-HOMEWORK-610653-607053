@@ -29,7 +29,7 @@ public class ComandoPrendi implements Comando {
 				io.mostraMessaggio("oggetto non trovato nella stanza");
 		}
 		else
-			io.mostraMessaggio("scegli un oggetto da prendere");
+			io.mostraMessaggio("devi scegliere un oggetto da prendere");
 	}
 
 	@Override

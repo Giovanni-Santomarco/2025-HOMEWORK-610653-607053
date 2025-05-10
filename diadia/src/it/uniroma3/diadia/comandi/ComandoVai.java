@@ -16,8 +16,7 @@ public class ComandoVai implements Comando {
 		Stanza stanzaCorrente = partita.getStanzaCorrente();
 		Stanza prossimaStanza = null;
 		if (this.direzione==null) {
-			io.mostraMessaggio("Dove vuoi andare?");
-			io.mostraMessaggio("Devi specificare una direzione");
+			io.mostraMessaggio("Dove vuoi andare?\nDevi specificare una direzione");
 			return;
 		}
 		prossimaStanza = stanzaCorrente.getStanzaAdiacente(this.direzione);
