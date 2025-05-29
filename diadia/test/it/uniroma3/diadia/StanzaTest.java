@@ -51,4 +51,5 @@ class StanzaTest {
 		stanza.impostaStanzaAdiacente("nord", stanzaAdiacente);
 		assertEquals(this.stanzaAdiacente, this.stanza.getStanzaAdiacente("nord"));
 	}
+	
 }

@@ -2,11 +2,20 @@ package it.uniroma3.diadia;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Borsa;
+import it.uniroma3.diadia.giocatore.ComparatorePerNome;
+import it.uniroma3.diadia.giocatore.ComparatorePerPeso;
 
 class BorsaTest {
 	private Borsa borsa;
@@ -52,6 +61,53 @@ class BorsaTest {
 		assertEquals(siringa, this.borsa.removeAttrezzo("siringa"));
 		assertEquals(scudo, this.borsa.removeAttrezzo("scudo"));
 		
+	}
+	
+	@Test
+	void testGetContenutoOrdinatoPerPeso() {
+		this.borsa.addAttrezzo(scudo);
+		this.borsa.addAttrezzo(siringa);
+		List<Attrezzo> expected = new ArrayList<>();
+		expected.add(siringa);
+		expected.add(scudo);
+		assertEquals(expected, this.borsa.getContenutoOrdinatoPerPeso());
+	}
+	
+	@Test
+	void testGetContenutoOrdinatoPerNome() {
+		this.borsa.addAttrezzo(scudo);
+		this.borsa.addAttrezzo(siringa);
+		Set<Attrezzo> expected = new TreeSet<>(new ComparatorePerNome());
+		expected.add(siringa);
+		expected.add(scudo);
+		assertEquals(expected, this.borsa.getContenutoOrdinatoPerNome());
+	}
+	
+	@Test
+	void testGetContenutoRaggruppatoPerPeso() {
+		borsa.addAttrezzo(new Attrezzo("martello", 3));
+        borsa.addAttrezzo(new Attrezzo("chiave", 2));
+        borsa.addAttrezzo(new Attrezzo("cacciavite", 2));
+
+        Map<Integer, Set<Attrezzo>> mappa = borsa.getContenutoRaggruppatoPerPeso();
+
+        Set<Attrezzo> attrezziPeso2 = mappa.get(2);
+        assertTrue(attrezziPeso2.contains(borsa.getAttrezzo("chiave")));
+        assertTrue(attrezziPeso2.contains(borsa.getAttrezzo("cacciavite")));
+
+        Set<Attrezzo> attrezziPeso3 = mappa.get(3);
+        assertTrue(attrezziPeso3.contains(borsa.getAttrezzo("martello")));
+	}
+	
+	@Test
+	void testGetSortedSetOrdinatoPerPeso() {
+		this.borsa.addAttrezzo(scudo);
+		this.borsa.addAttrezzo(siringa);
+		Set<Attrezzo> expected = new TreeSet<>(new ComparatorePerPeso());
+		
+		expected.add(scudo);
+		expected.add(siringa);
+		assertEquals(expected, this.borsa.getSortedSetOrdinatoPerPeso());
 	}
 	
 }
