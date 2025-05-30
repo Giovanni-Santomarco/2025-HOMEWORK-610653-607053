@@ -1,7 +1,12 @@
 package it.uniroma3.diadia.ambienti;
+
+import java.util.List;
+import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -77,8 +82,8 @@ public class Stanza {
 	 * Restituisce la collezione di attrezzi presenti nella stanza.
 	 * @return la collezione di attrezzi nella stanza.
 	 */
-	public Collection<Attrezzo> getAttrezzi() {
-		return this.nome2attrezzo.values();
+	public Map<String, Attrezzo> getAttrezzi() {
+		return this.nome2attrezzo;
 	}
 
 	/**
@@ -148,11 +153,22 @@ public class Stanza {
 
 
 	public Collection<String> getDirezioni() {
-		return direzione2stanzaAdiacente.keySet();
+		
+		List<String> direzioni = new ArrayList<>(direzione2stanzaAdiacente.keySet());
+		
+		return direzioni;
 	}
+	
+	
+	
 
 	public Map<String, Stanza> getMapStanzeAdiacenti() {
 		return direzione2stanzaAdiacente;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		Stanza stanza = (Stanza)o;
+		return this.nome.equals(stanza.getNome());
+	}
 }
