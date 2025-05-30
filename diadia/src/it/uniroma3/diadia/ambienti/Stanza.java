@@ -151,4 +151,8 @@ public class Stanza {
 		return direzione2stanzaAdiacente.keySet();
 	}
 
+	public Map<String, Stanza> getMapStanzeAdiacenti() {
+		return direzione2stanzaAdiacente;
+	}
+
 }

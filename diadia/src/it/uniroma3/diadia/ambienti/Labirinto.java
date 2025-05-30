@@ -6,8 +6,8 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  */
 public class Labirinto {
     
-    private Stanza stanzainiziale;
-    private Stanza stanzafinale;
+    private Stanza stanzaIniziale;
+    private Stanza stanzaFinale;
     
     
     public Labirinto() {
@@ -55,22 +55,29 @@ public class Labirinto {
         aulaN11.addAttrezzo(chiave);
 
         // il gioco comincia nell'atrio
-        stanzainiziale = atrio;  
-        stanzafinale = biblioteca;
+        stanzaIniziale = atrio;  
+        stanzaFinale = biblioteca;
     }
     
     /**
      *restituisce la stanza iniziale
      */
     public Stanza getStanzaIniziale() {
-        return this.stanzainiziale;
+        return this.stanzaIniziale;
     }
     
     /**
      * restituisce la stanza finale
      */
     public Stanza getStanzaFinale() {
-        return this.stanzafinale;
+        return this.stanzaFinale;
     }
     
+    public void setStanzaIniziale(Stanza stanzaIniziale) {
+		this.stanzaIniziale = stanzaIniziale;
+	}
+
+	public void setStanzaFinale(Stanza stanzaFinale) {
+		this.stanzaFinale = stanzaFinale;
+	}
 }
