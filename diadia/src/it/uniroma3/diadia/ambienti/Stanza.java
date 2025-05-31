@@ -108,13 +108,13 @@ public class Stanza {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(this.nome);
 		risultato.append("\nUscite: ");
-		for (String direzione : this.direzione2stanzaAdiacente.keySet())
+		for (Map.Entry<String, Stanza> direzione : this.direzione2stanzaAdiacente.entrySet())
 			if (direzione!=null)
-				risultato.append(" " + direzione);
+				risultato.append(" " + direzione.getKey());
 		risultato.append("\nAttrezzi nella stanza: ");
-		for (Attrezzo attrezzo : this.nome2attrezzo.values()) {
+		for (Map.Entry<String, Attrezzo> attrezzo : this.nome2attrezzo.entrySet()) {
 			if(attrezzo!=null) {
-				risultato.append(attrezzo.toString()+" ");
+				risultato.append(attrezzo.getValue()+" ");
 			}
 		}
 		return risultato.toString();
