@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.ComandoPrendi;
 
@@ -20,7 +21,7 @@ class ComandoPrendiTest {
 	void setUp() throws Exception {
 		this.prendi = new ComandoPrendi();
 		this.attrezzo = new Attrezzo("chiave", 1);
-		this.partita = new Partita();
+		this.partita = new Partita(new LabirintoBuilder().build().getLabirinto());
 		this.console= new IOConsole();
 		this.att = "chiave";
 		partita.getStanzaCorrente().addAttrezzo(attrezzo);

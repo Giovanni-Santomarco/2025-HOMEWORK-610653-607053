@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.ComandoPosa;
 
@@ -18,7 +19,7 @@ class ComandoPosaTest {
 	@BeforeEach
 	void setUp() throws Exception{
 		this.posa = new ComandoPosa();
-		this.partita = new Partita();
+		this.partita = new Partita(new LabirintoBuilder().build().getLabirinto());
 		this.console = new IOConsole();
 		this.corno = new Attrezzo("corno", 1);
 		this.att= "corno";

@@ -3,8 +3,11 @@ package it.uniroma3.diadia;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 
 
 class PartitaTest {
@@ -13,7 +16,7 @@ class PartitaTest {
 	
 	@BeforeEach
 	void setUp() throws Exception{
-		this.partita = new Partita();
+		this.partita = new Partita(new LabirintoBuilder().build().getLabirinto());
 	}
 	
 	@Test
