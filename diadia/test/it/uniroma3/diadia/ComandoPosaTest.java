@@ -29,11 +29,12 @@ class ComandoPosaTest {
 		
 	}
 	@Test
-	void test() {
+	void testEsegui() {
 		posa.setParametro(att);
 		posa.esegui(partita, console);
 		assertTrue(this.partita.getStanzaCorrente().hasAttrezzo(att));
 		assertFalse(this.partita.getGiocatore().getBorsa().hasAttrezzo(att));
 		
 	}
+	
 }
