@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.ambienti;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
+
+import java.util.Map;
 
 /**
  * questa classe crea la mappa di gioco
@@ -8,7 +9,7 @@ public class Labirinto {
     
     private Stanza stanzaIniziale;
     private Stanza stanzaFinale;
-    
+//    private Map<String, Stanza> nome2stanza;
     
     public Labirinto() {
         
@@ -80,4 +81,8 @@ public class Labirinto {
 	public void setStanzaFinale(Stanza stanzaFinale) {
 		this.stanzaFinale = stanzaFinale;
 	}
+	
+//	public Map<String, Stanza> getMappaStanze() {
+//		return this.nome2stanza;
+//	}
 }

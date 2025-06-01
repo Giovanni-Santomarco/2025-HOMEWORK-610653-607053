@@ -1,6 +1,9 @@
 package it.uniroma3.diadia;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -50,6 +53,31 @@ class StanzaTest {
 		assertEquals(null, this.stanza.getStanzaAdiacente("nord"));
 		stanza.impostaStanzaAdiacente("nord", stanzaAdiacente);
 		assertEquals(this.stanzaAdiacente, this.stanza.getStanzaAdiacente("nord"));
+	}
+	
+	@Test
+	void testGetStanzaAdiacentiOrdinatePerNumeroDiAttrezzi() {
+		LabirintoBuilder builder = new LabirintoBuilder();
+		Labirinto lab = builder.addStanzaIniziale("N10").addStanza("N11").addAttrezzo("martello", 1).addAttrezzo("maglio", 6)
+		.addStanza("N12")
+		.addStanza("N13").addAttrezzo("piccone", 7)
+		.addStanza("N14").addAttrezzo("osso", 1).addAttrezzo("bazooka", 9).addAttrezzo("chiave", 1)
+		.addAdiacenza("N10", "N11", "nord").addAdiacenza("N11", "N10", "sud")	//N11 2 
+		.addAdiacenza("N10", "N12", "sud").addAdiacenza("N12", "N10", "nord")	//N12 0
+		.addAdiacenza("N10", "N13", "est").addAdiacenza("N13", "N10", "ovest")	//N13 1
+		.addAdiacenza("N10", "N14", "ovest").addAdiacenza("N14", "N10", "est")	//N14 3
+		.getLabirinto();
+		
+		this.stanza= lab.getStanzaIniziale();
+		assertEquals(this.stanza.getStanzeAdiacentiOrdinatePerNumeroDiAttrezzi().toString(), "[N12\n"
+				+ "Uscite:  nord\n"
+				+ "Attrezzi nella stanza: , N13\n"
+				+ "Uscite:  ovest\n"
+				+ "Attrezzi nella stanza: piccone (7kg) , N11\n"
+				+ "Uscite:  sud\n"
+				+ "Attrezzi nella stanza: martello (1kg) maglio (6kg) , N14\n"
+				+ "Uscite:  est\n"
+				+ "Attrezzi nella stanza: osso (1kg) bazooka (9kg) chiave (1kg) ]");
 	}
 	
 }

@@ -1,12 +1,14 @@
 package it.uniroma3.diadia.ambienti;
 
 import java.util.List;
+
 import java.util.ArrayList;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.TreeSet;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
@@ -121,6 +123,10 @@ public class Stanza {
 				risultato.append(attrezzo.getValue()+" ");
 			}
 		}
+		if(this.personaggio!=null) {
+			risultato.append("\n" + "nella stanza c'è " + this.personaggio.toString());
+		}
+		
 		return risultato.toString();
 	}
 
@@ -166,6 +172,32 @@ public class Stanza {
 	
 	public Map<String, Stanza> getMapStanzeAdiacenti() {
 		return direzione2stanzaAdiacente;
+	}
+	
+	
+	public Map<String, Attrezzo> getMapAttrezzi(){
+		return nome2attrezzo;
+	}
+	
+	
+	public TreeSet<Stanza> getStanzeAdiacentiOrdinatePerNumeroDiAttrezzi() {
+		
+		class ComparatorePerNumeroDiAttrezzi implements Comparator<Stanza>{
+
+			@Override
+			public int compare(Stanza o1, Stanza o2) {
+				if(o1.getMapAttrezzi().size()-o2.getMapAttrezzi().size()!=0) {
+					return o1.getMapAttrezzi().size()-o2.getMapAttrezzi().size();					
+				}
+				return o1.getNome().compareTo(o2.getNome());
+			}
+			
+		}
+		
+		TreeSet<Stanza> stanzeOrdinatePerNumAttrezzi = new TreeSet<Stanza>(new ComparatorePerNumeroDiAttrezzi());
+		stanzeOrdinatePerNumAttrezzi.addAll(this.getMapStanzeAdiacenti().values());
+		
+		return stanzeOrdinatePerNumAttrezzi;
 	}
 
 	

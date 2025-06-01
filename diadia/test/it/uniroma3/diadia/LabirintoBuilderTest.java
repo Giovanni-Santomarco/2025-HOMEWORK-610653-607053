@@ -13,6 +13,8 @@ import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.ambienti.StanzaBloccata;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.Cane;
+import it.uniroma3.diadia.personaggi.Mago;
 
 public class LabirintoBuilderTest {
 	private LabirintoBuilder labirintoBuilder;
@@ -241,5 +243,14 @@ public class LabirintoBuilderTest {
 		assertEquals(stanzaBloccata,labirintoBuilder.getMappaStanze().get("stanza bloccata").getStanzaAdiacente("nord"));
 	}
 	
+	@Test
+	public void testAddPersonaggio() {
+		this.labirintoBuilder.addStanzaIniziale(nomeStanzaIniziale).addPersonaggio(new Mago("Mago", "Salve sono il MagoDeiPolli", new Attrezzo("pollo", 4)))
+		.addPersonaggio(new Cane("Cane", "Salve sono Buld il cane parlante"))
+		.addStanzaVincente(nomeStanzaVincente)
+		.addAdiacenza(nomeStanzaIniziale, nomeStanzaVincente, "nord")
+		.addAdiacenza(nomeStanzaVincente, nomeStanzaIniziale, "sud");
+		assertEquals(labirintoBuilder.getMappaStanze().get(nomeStanzaIniziale).getPersonaggio().toString(), "Mago");
+	}
 
 }

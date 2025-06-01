@@ -158,7 +158,7 @@ class IOSimulatorTest {
 				"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 				"Per conoscere le istruzioni usa il comando 'aiuto'.",
 
-				"vai\n" + "aiuto\n" + "fine\n" + "prendi\n" + "posa\n" + "guarda\n",
+				"vai\n" + "aiuto\n" + "fine\n" + "prendi\n" + "posa\n" + "guarda\n" + "interagisci\n" + "saluta\n",
 				"comando non valido",
 				"Dove vuoi andare?\nDevi specificare una direzione",
 				"Direzione inesistente",

@@ -80,7 +80,7 @@ public class DiaDia {
 		IO io = new IOConsole();
 		
 		LabirintoBuilder builder = new LabirintoBuilder();
-		Labirinto labirinto = builder.build().getLabirinto();
+		Labirinto labirinto = builder.buildBase().getLabirinto();
 		
 		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();

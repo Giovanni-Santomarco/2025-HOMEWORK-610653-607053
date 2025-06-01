@@ -31,5 +31,15 @@ public class Mago extends AbstractPersonaggio {
 		}
 		return msg;
 	}
+
+	@Override
+	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
+		
+		partita.getGiocatore().getBorsa().removeAttrezzo(attrezzo.getNome());
+		attrezzo.setPeso(attrezzo.getPeso()/2);
+		partita.getStanzaCorrente().addAttrezzo(attrezzo);
+		
+		return "ti ringrazio del dono, ma io declino l'offerta, nonostante ciò ora sarà più leggero";
+	}
 	
 }
