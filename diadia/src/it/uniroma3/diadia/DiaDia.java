@@ -3,7 +3,7 @@ package it.uniroma3.diadia;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
 
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+import it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
@@ -47,9 +47,20 @@ public class DiaDia {
 
 
 		io.mostraMessaggio(MESSAGGIO_BENVENUTO);      
-		do      
+		do {     
 			istruzione = io.leggiRiga();
+		}
 		while (!processaIstruzione(istruzione));
+		
+		//chiude lo scanner
+		if(io.getClass()==IOConsole.class) { //(io instanceof IOConsole) potevo anche scrivere
+			IOConsole console = (IOConsole)io;
+			console.close();
+		}
+		
+//		if(io instanceof IOConsole) {
+//			((IOConsole) io).close();
+//		}
 	}   
 
 	/**

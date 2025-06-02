@@ -3,10 +3,12 @@ package it.uniroma3.diadia;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+import it.uniroma3.diadia.ambienti.Direzione;
+import it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.ComandoInteragisci;
 import it.uniroma3.diadia.comandi.ComandoRegala;
@@ -26,8 +28,8 @@ class CaneTest {
 		this.builder.addStanzaIniziale("Atrio")
 		.addPersonaggio(new Cane("Cane", "Salve sono Buld il cane parlante"))
 		.addStanzaVincente("Atrio")
-		.addAdiacenza("Atrio", "Uscita", "nord")
-		.addAdiacenza("Atrio", "Uscita", "sud");
+		.addAdiacenza("Atrio", "Uscita", Direzione.NORD)
+		.addAdiacenza("Atrio", "Uscita", Direzione.SUD);
 		this.io = new IOConsole();
 		this.partita = new Partita(this.builder.getLabirinto());
 		this.partita.getGiocatore().setCfu(7);

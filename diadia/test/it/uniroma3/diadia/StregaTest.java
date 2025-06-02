@@ -2,11 +2,13 @@ package it.uniroma3.diadia;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+import it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.ComandoInteragisci;
 import it.uniroma3.diadia.comandi.ComandoRegala;
@@ -29,10 +31,10 @@ class StregaTest {
 		.addStanza("N12")
 		.addStanza("N13").addAttrezzo("piccone", 7)
 		.addStanza("N14").addAttrezzo("osso", 1).addAttrezzo("bazooka", 9).addAttrezzo("chiave", 1)
-		.addAdiacenza("N10", "N11", "nord").addAdiacenza("N11", "N10", "sud")	//N11 2 
-		.addAdiacenza("N10", "N12", "sud").addAdiacenza("N12", "N10", "nord")	//N12 0
-		.addAdiacenza("N10", "N13", "est").addAdiacenza("N13", "N10", "ovest")	//N13 1
-		.addAdiacenza("N10", "N14", "ovest").addAdiacenza("N14", "N10", "est")	//N14 3
+		.addAdiacenza("N10", "N11", Direzione.NORD).addAdiacenza("N11", "N10", Direzione.SUD)	//N11 2 
+		.addAdiacenza("N10", "N12", Direzione.SUD).addAdiacenza("N12", "N10", Direzione.NORD)	//N12 0
+		.addAdiacenza("N10", "N13", Direzione.EST).addAdiacenza("N13", "N10", Direzione.OVEST)	//N13 1
+		.addAdiacenza("N10", "N14", Direzione.OVEST).addAdiacenza("N14", "N10", Direzione.EST)	//N14 3
 		.getLabirinto();
 		this.partita = new Partita(labirinto);
 		this.console = new IOConsole();
@@ -42,7 +44,7 @@ class StregaTest {
 	void testEseguiStregaSenzaSalutare() {
 		ComandoInteragisci interact = new ComandoInteragisci();
 		interact.esegui(partita, console);
-		assertEquals(partita.getStanzaCorrente(), builder.getMappaStanze().get("N12"));
+		assertEquals(partita.getStanzaCorrente(), builder.getLabirinto().getMappaStanze().get("N12"));
 	}
 	
 	@Test
@@ -51,7 +53,7 @@ class StregaTest {
 		ComandoInteragisci interact = new ComandoInteragisci();
 		saluta.esegui(partita, console);
 		interact.esegui(partita, console);
-		assertEquals(partita.getStanzaCorrente(), builder.getMappaStanze().get("N14"));
+		assertEquals(partita.getStanzaCorrente(), builder.getLabirinto().getMappaStanze().get("N14"));
 	}
 	
 	@Test

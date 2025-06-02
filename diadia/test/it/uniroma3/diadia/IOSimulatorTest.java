@@ -1,6 +1,7 @@
 package it.uniroma3.diadia;
 
 import static org.junit.Assert.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+import it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder;
 
 class IOSimulatorTest {
 
@@ -37,22 +38,22 @@ class IOSimulatorTest {
 				"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 				"Per conoscere le istruzioni usa il comando 'aiuto'.",
 				
-				"Atrio\n" + "Uscite:  nord sud est ovest\n" + "Attrezzi nella stanza: scudo (7kg) osso (1kg) lancia (4kg) \n" + "la porta a nord è chiusa e per aprirla serve chiave\n" + "cfu: 7\n" + "Borsa vuota",
-				"Aula N10\n" + "Uscite:  nord est ovest\n" + "Attrezzi nella stanza: lanterna (3kg) \n" + "cfu: 6\n" + "Borsa vuota",
-				"Aula N10\n" + "Uscite:  nord est ovest\n" + "Attrezzi nella stanza: lanterna (3kg) \n" + "cfu: 6\n" + "Borsa vuota",
+				"Atrio\n" + "Uscite:  NORD SUD EST OVEST\n" + "Attrezzi nella stanza: scudo (7kg) osso (1kg) lancia (4kg) \n" + "la porta a NORD è chiusa e per aprirla serve chiave\n" + "cfu: 7\n" + "Borsa vuota",
+				"Aula N10\n" + "Uscite:  NORD EST OVEST\n" + "Attrezzi nella stanza: lanterna (3kg) \n" + "cfu: 6\n" + "Borsa vuota",
+				"Aula N10\n" + "Uscite:  NORD EST OVEST\n" + "Attrezzi nella stanza: lanterna (3kg) \n" + "cfu: 6\n" + "Borsa vuota",
 				"oggetto preso",
 				"qui c'è buio pesto\n" + "cfu: 6\n" + "Contenuto borsa (3kg/10kg): [lanterna (3kg)]",
-				"Atrio\n" + "Uscite:  nord sud est ovest\n" + "Attrezzi nella stanza: scudo (7kg) osso (1kg) lancia (4kg) \n" + "la porta a nord è chiusa e per aprirla serve chiave\n" + "cfu: 5\n" + "Contenuto borsa (3kg/10kg): [lanterna (3kg)]",
+				"Atrio\n" + "Uscite:  NORD SUD EST OVEST\n" + "Attrezzi nella stanza: scudo (7kg) osso (1kg) lancia (4kg) \n" + "la porta a NORD è chiusa e per aprirla serve chiave\n" + "cfu: 5\n" + "Contenuto borsa (3kg/10kg): [lanterna (3kg)]",
 				"oggetto preso",
 				"oggetto preso",
 				"borsa piena",
-				"Aula N11\n" + "Uscite:  est ovest\n" + "Attrezzi nella stanza: chiave (1kg) \n" + "cfu: 4\n" + "Contenuto borsa (8kg/10kg): [osso (1kg), lancia (4kg), lanterna (3kg)]",
+				"Aula N11\n" + "Uscite:  EST OVEST\n" + "Attrezzi nella stanza: chiave (1kg) \n" + "cfu: 4\n" + "Contenuto borsa (8kg/10kg): [osso (1kg), lancia (4kg), lanterna (3kg)]",
 				"oggetto preso",
-				"Atrio\n" + "Uscite:  nord sud est ovest\n" + "Attrezzi nella stanza: scudo (7kg) \n" + "la porta a nord è chiusa e per aprirla serve chiave\n" + "cfu: 3\n" + "Contenuto borsa (9kg/10kg): [osso (1kg), chiave (1kg), lancia (4kg), lanterna (3kg)]",
-				"Atrio\n" + "Uscite:  nord sud est ovest\n" + "Attrezzi nella stanza: scudo (7kg) \n" + "la porta a nord è chiusa e per aprirla serve chiave\n" + "cfu: 3\n" + "Contenuto borsa (9kg/10kg): [osso (1kg), chiave (1kg), lancia (4kg), lanterna (3kg)]",
+				"Atrio\n" + "Uscite:  NORD SUD EST OVEST\n" + "Attrezzi nella stanza: scudo (7kg) \n" + "la porta a NORD è chiusa e per aprirla serve chiave\n" + "cfu: 3\n" + "Contenuto borsa (9kg/10kg): [osso (1kg), chiave (1kg), lancia (4kg), lanterna (3kg)]",
+				"Atrio\n" + "Uscite:  NORD SUD EST OVEST\n" + "Attrezzi nella stanza: scudo (7kg) \n" + "la porta a NORD è chiusa e per aprirla serve chiave\n" + "cfu: 3\n" + "Contenuto borsa (9kg/10kg): [osso (1kg), chiave (1kg), lancia (4kg), lanterna (3kg)]",
 				"oggetto posato",
-				"Atrio\n" + "Uscite:  nord sud est ovest\n" + "Attrezzi nella stanza: scudo (7kg) chiave (1kg) \n" + "la porta a nord è chiusa e per aprirla serve chiave\n" + "cfu: 3\n" + "Contenuto borsa (8kg/10kg): [osso (1kg), lancia (4kg), lanterna (3kg)]",
-				"Biblioteca\n" + "Uscite:  sud\n" + "Attrezzi nella stanza: \n" + "cfu: 2\n" + "Contenuto borsa (8kg/10kg): [osso (1kg), lancia (4kg), lanterna (3kg)]",
+				"Atrio\n" + "Uscite:  NORD SUD EST OVEST\n" + "Attrezzi nella stanza: scudo (7kg) chiave (1kg) \n" + "la porta a NORD è chiusa e per aprirla serve chiave\n" + "cfu: 3\n" + "Contenuto borsa (8kg/10kg): [osso (1kg), lancia (4kg), lanterna (3kg)]",
+				"Biblioteca\n" + "Uscite:  SUD\n" + "Attrezzi nella stanza: \n" + "cfu: 2\n" + "Contenuto borsa (8kg/10kg): [osso (1kg), lancia (4kg), lanterna (3kg)]",
 		"Hai vinto!"};
 
 		List<String> expected1 = new ArrayList<>();
@@ -97,9 +98,9 @@ class IOSimulatorTest {
 				"Per conoscere le istruzioni usa il comando 'aiuto'.",
 				
 				"oggetto preso",
-				"Aula N11\n" + "Uscite:  est ovest\n" + "Attrezzi nella stanza: chiave (1kg) \n" + "cfu: 6\n" + "Contenuto borsa (4kg/10kg): [lancia (4kg)]",
+				"Aula N11\n" + "Uscite:  EST OVEST\n" + "Attrezzi nella stanza: chiave (1kg) \n" + "cfu: 6\n" + "Contenuto borsa (4kg/10kg): [lancia (4kg)]",
 				"oggetto preso",
-				"Laboratorio Campus\n" + "Uscite:  est ovest\n" + "Attrezzi nella stanza: \n" + "cfu: 5\n" + "Contenuto borsa (5kg/10kg): [chiave (1kg), lancia (4kg)]",
+				"Laboratorio Campus\n" + "Uscite:  EST OVEST\n" + "Attrezzi nella stanza: \n" + "cfu: 5\n" + "Contenuto borsa (5kg/10kg): [chiave (1kg), lancia (4kg)]",
 				"oggetto posato",
 				"oggetto preso",
 				"oggetto posato",
@@ -115,11 +116,11 @@ class IOSimulatorTest {
 				"oggetto posato",
 				"borsa piena",
 				"oggetto posato",
-				"Laboratorio Campus\n" + "Uscite:  est ovest\n" + "Attrezzi nella stanza: chiave (4kg) lancia (16kg) \n" + "cfu: 5\n" + "Borsa vuota",
+				"Laboratorio Campus\n" + "Uscite:  EST OVEST\n" + "Attrezzi nella stanza: chiave (4kg) lancia (16kg) \n" + "cfu: 5\n" + "Borsa vuota",
 				"oggetto preso",
-				"Atrio\n" + "Uscite:  nord sud est ovest\n" + "Attrezzi nella stanza: scudo (7kg) osso (1kg) \n" + "la porta a nord è chiusa e per aprirla serve chiave\n" + "cfu: 4\n" + "Contenuto borsa (4kg/10kg): [chiave (4kg)]",
+				"Atrio\n" + "Uscite:  NORD SUD EST OVEST\n" + "Attrezzi nella stanza: scudo (7kg) osso (1kg) \n" + "la porta a NORD è chiusa e per aprirla serve chiave\n" + "cfu: 4\n" + "Contenuto borsa (4kg/10kg): [chiave (4kg)]",
 				"oggetto posato",
-				"Biblioteca\n" + "Uscite:  sud\n" + "Attrezzi nella stanza: \n" + "cfu: 3\n" + "Borsa vuota",
+				"Biblioteca\n" + "Uscite:  SUD\n" + "Attrezzi nella stanza: \n" + "cfu: 3\n" + "Borsa vuota",
 		"Hai vinto!"};
 
 		List<String> expected2 = new ArrayList<>();
@@ -161,7 +162,7 @@ class IOSimulatorTest {
 				"vai\n" + "aiuto\n" + "fine\n" + "prendi\n" + "posa\n" + "guarda\n" + "interagisci\n" + "saluta\n",
 				"comando non valido",
 				"Dove vuoi andare?\nDevi specificare una direzione",
-				"Direzione inesistente",
+				"la direzione scelta non è valida",
 				"oggetto preso",
 				"borsa piena",
 				"oggetto non trovato nella stanza",

@@ -33,7 +33,7 @@ public class Stanza {
 
 	private Map<String, Attrezzo> nome2attrezzo;
 
-	private Map<String, Stanza> direzione2stanzaAdiacente;
+	private Map<Direzione, Stanza> direzione2stanzaAdiacente;
 
 	private AbstractPersonaggio personaggio;
 
@@ -54,7 +54,7 @@ public class Stanza {
 	 * @param direzione direzione in cui sara' posta la stanza adiacente.
 	 * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
 	 */
-	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
+	public void impostaStanzaAdiacente(Direzione direzione, Stanza stanza) {
 		if(direzione2stanzaAdiacente.size() < NUMERO_MASSIMO_DIREZIONI) {
 			direzione2stanzaAdiacente.put(direzione, stanza);
 		}
@@ -64,7 +64,7 @@ public class Stanza {
 	 * Restituisce la stanza adiacente nella direzione specificata
 	 * @param direzione
 	 */
-	public Stanza getStanzaAdiacente(String direzione) {
+	public Stanza getStanzaAdiacente(Direzione direzione) {
 		return direzione2stanzaAdiacente.get(direzione);
 	}
 
@@ -112,17 +112,28 @@ public class Stanza {
 	 */
 	public String toString() {
 		StringBuilder risultato = new StringBuilder();
+		
 		risultato.append(this.nome);
+		
 		risultato.append("\nUscite: ");
-		for (Map.Entry<String, Stanza> direzione : this.direzione2stanzaAdiacente.entrySet())
-			if (direzione!=null)
-				risultato.append(" " + direzione.getKey());
+//		for (Map.Entry<Direzione, Stanza> direzione : this.direzione2stanzaAdiacente.entrySet())
+//			if (direzione!=null)
+//				risultato.append(" " + direzione.getKey());
+		
+		//per stampare le direzioni ordinate secondo ordinal()
+		TreeSet<Direzione> stampaDirezioni = new TreeSet<>(this.direzione2stanzaAdiacente.keySet());
+		for(Direzione direzione : stampaDirezioni) {
+			risultato.append(" " + direzione);
+		}
+		
+		
 		risultato.append("\nAttrezzi nella stanza: ");
 		for (Map.Entry<String, Attrezzo> attrezzo : this.nome2attrezzo.entrySet()) {
 			if(attrezzo!=null) {
 				risultato.append(attrezzo.getValue()+" ");
 			}
 		}
+		
 		if(this.personaggio!=null) {
 			risultato.append("\n" + "nella stanza c'è " + this.personaggio.toString());
 		}
@@ -162,15 +173,15 @@ public class Stanza {
 	}
 
 
-	public Collection<String> getDirezioni() {
+	public Collection<Direzione> getDirezioni() {
 
-		List<String> direzioni = new ArrayList<>(direzione2stanzaAdiacente.keySet());
+		List<Direzione> direzioni = new ArrayList<>(direzione2stanzaAdiacente.keySet());
 
 		return direzioni;
 	}
 
 	
-	public Map<String, Stanza> getMapStanzeAdiacenti() {
+	public Map<Direzione, Stanza> getMapStanzeAdiacenti() {
 		return direzione2stanzaAdiacente;
 	}
 	

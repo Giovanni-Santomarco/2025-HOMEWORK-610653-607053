@@ -2,8 +2,10 @@ package it.uniroma3.diadia;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+import it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -50,9 +52,9 @@ class StanzaTest {
 	
 	@Test
 	void testGetStanzaAdiacenteANDtestImpostaStanzaAdiacente() {
-		assertEquals(null, this.stanza.getStanzaAdiacente("nord"));
-		stanza.impostaStanzaAdiacente("nord", stanzaAdiacente);
-		assertEquals(this.stanzaAdiacente, this.stanza.getStanzaAdiacente("nord"));
+		assertEquals(null, this.stanza.getStanzaAdiacente(Direzione.NORD));
+		stanza.impostaStanzaAdiacente(Direzione.NORD, stanzaAdiacente);
+		assertEquals(this.stanzaAdiacente, this.stanza.getStanzaAdiacente(Direzione.NORD));
 	}
 	
 	@Test
@@ -62,21 +64,21 @@ class StanzaTest {
 		.addStanza("N12")
 		.addStanza("N13").addAttrezzo("piccone", 7)
 		.addStanza("N14").addAttrezzo("osso", 1).addAttrezzo("bazooka", 9).addAttrezzo("chiave", 1)
-		.addAdiacenza("N10", "N11", "nord").addAdiacenza("N11", "N10", "sud")	//N11 2 
-		.addAdiacenza("N10", "N12", "sud").addAdiacenza("N12", "N10", "nord")	//N12 0
-		.addAdiacenza("N10", "N13", "est").addAdiacenza("N13", "N10", "ovest")	//N13 1
-		.addAdiacenza("N10", "N14", "ovest").addAdiacenza("N14", "N10", "est")	//N14 3
+		.addAdiacenza("N10", "N11", Direzione.NORD).addAdiacenza("N11", "N10", Direzione.SUD)	//N11 2 
+		.addAdiacenza("N10", "N12", Direzione.SUD).addAdiacenza("N12", "N10", Direzione.NORD)	//N12 0
+		.addAdiacenza("N10", "N13", Direzione.EST).addAdiacenza("N13", "N10", Direzione.OVEST)	//N13 1
+		.addAdiacenza("N10", "N14", Direzione.OVEST).addAdiacenza("N14", "N10", Direzione.EST)	//N14 3
 		.getLabirinto();
 		
 		this.stanza= lab.getStanzaIniziale();
 		assertEquals(this.stanza.getStanzeAdiacentiOrdinatePerNumeroDiAttrezzi().toString(), "[N12\n"
-				+ "Uscite:  nord\n"
+				+ "Uscite:  NORD\n"
 				+ "Attrezzi nella stanza: , N13\n"
-				+ "Uscite:  ovest\n"
+				+ "Uscite:  OVEST\n"
 				+ "Attrezzi nella stanza: piccone (7kg) , N11\n"
-				+ "Uscite:  sud\n"
+				+ "Uscite:  SUD\n"
 				+ "Attrezzi nella stanza: martello (1kg) maglio (6kg) , N14\n"
-				+ "Uscite:  est\n"
+				+ "Uscite:  EST\n"
 				+ "Attrezzi nella stanza: osso (1kg) bazooka (9kg) chiave (1kg) ]");
 	}
 	
