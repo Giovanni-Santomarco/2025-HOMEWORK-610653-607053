@@ -3,6 +3,7 @@ package it.uniroma3.diadia.ambienti;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.uniroma3.diadia.CaricatoreLabirinto;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 import it.uniroma3.diadia.personaggi.Cane;
@@ -49,6 +50,10 @@ public class Labirinto {
 		return this.nome2stanza;
 	}
 	
+	public void setMappaStanze(Map<String, Stanza> nome2stanza) {
+		this.nome2stanza = nome2stanza;
+	}
+	
 	public void addStanza2Map(Stanza stanza) {
 		nome2stanza.put(stanza.getNome(), stanza);
 	}
@@ -64,6 +69,13 @@ public class Labirinto {
 
 		public LabirintoBuilder() {
 			this.labirinto = new Labirinto();
+		}
+
+		public LabirintoBuilder(CaricatoreLabirinto car) {
+			this.labirinto = new Labirinto();
+			this.labirinto.setStanzaIniziale(car.getStanzaIniziale());
+			this.labirinto.setStanzaFinale(car.getStanzaVincente());
+			this.labirinto.setMappaStanze(car.getNome2stanza());
 		}
 
 		public LabirintoBuilder addStanza(String nome) {

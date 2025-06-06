@@ -1,9 +1,11 @@
 package it.uniroma3.diadia;
 
 
+import java.io.FileNotFoundException;
+
 import it.uniroma3.diadia.ambienti.Labirinto;
 
-import it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder;
+
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
@@ -51,16 +53,16 @@ public class DiaDia {
 			istruzione = io.leggiRiga();
 		}
 		while (!processaIstruzione(istruzione));
-		
+
 		//chiude lo scanner
 		if(io.getClass()==IOConsole.class) { //(io instanceof IOConsole) potevo anche scrivere
 			IOConsole console = (IOConsole)io;
 			console.close();
 		}
-		
-//		if(io instanceof IOConsole) {
-//			((IOConsole) io).close();
-//		}
+
+		//		if(io instanceof IOConsole) {
+		//			((IOConsole) io).close();
+		//		}
 	}   
 
 	/**
@@ -89,11 +91,25 @@ public class DiaDia {
 
 	public static void main(String[] argc) {
 		IO io = new IOConsole();
+
+		Labirinto labirinto = null;
 		
-		LabirintoBuilder builder = new LabirintoBuilder();
-		Labirinto labirinto = builder.buildBase().getLabirinto();
-		
-		DiaDia gioco = new DiaDia(io, labirinto);
-		gioco.gioca();
+		try {
+			CaricatoreLabirinto car = new CaricatoreLabirinto("livelli/livello1.txt");
+			car.carica();
+			Labirinto.LabirintoBuilder builder = new Labirinto.LabirintoBuilder(car);
+			labirinto = builder.getLabirinto();
+			
+		} catch (Exception e) {
+			io.mostraMessaggio("Non è stato costruito il labirinto usando il file\n");
+			Labirinto.LabirintoBuilder builder = new Labirinto.LabirintoBuilder();
+			labirinto = builder.buildBase().getLabirinto();
+
+		}finally {
+			DiaDia gioco = new DiaDia(io, labirinto);
+			gioco.gioca();
+			
+		}
+
 	}
 }

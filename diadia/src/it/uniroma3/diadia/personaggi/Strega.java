@@ -5,7 +5,6 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Strega extends AbstractPersonaggio{
 	
-	private Attrezzo regaloPerStrega;
 
 	public Strega(String nome, String presentaz) {
 		super(nome, presentaz);
