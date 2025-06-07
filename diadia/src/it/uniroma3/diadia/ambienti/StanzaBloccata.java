@@ -28,6 +28,14 @@ public class StanzaBloccata extends Stanza {
 		return stanza;
 	}
 
+	public Direzione getDirezioneBloccata() {
+		return direzioneBloccata;
+	}
+
+	public String getChiave() {
+		return chiave;
+	}
+
 	@Override
 	public String getDescrizione() {
 		return super.toString()+"\nla porta a "+this.direzioneBloccata+" è chiusa e per aprirla serve "+this.chiave;

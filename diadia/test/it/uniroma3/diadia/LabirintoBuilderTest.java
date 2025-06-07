@@ -248,7 +248,7 @@ public class LabirintoBuilderTest {
 	@Test
 	public void testAddPersonaggio() {
 		this.labirintoBuilder.addStanzaIniziale(nomeStanzaIniziale).addPersonaggio(new Mago("Mago", "Salve sono il MagoDeiPolli", new Attrezzo("pollo", 4)))
-		.addPersonaggio(new Cane("Cane", "Salve sono Buld il cane parlante"))
+		.addPersonaggio(new Cane("Cane", "Salve sono Buld il cane parlante", new Attrezzo("escrementi", 1)))
 		.addStanzaVincente(nomeStanzaVincente)
 		.addAdiacenza(nomeStanzaIniziale, nomeStanzaVincente, Direzione.NORD)
 		.addAdiacenza(nomeStanzaVincente, nomeStanzaIniziale, Direzione.SUD);

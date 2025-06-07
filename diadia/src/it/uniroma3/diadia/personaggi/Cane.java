@@ -8,9 +8,9 @@ public class Cane extends AbstractPersonaggio {
 	private static final String NOME_CIBO_PREFERITO = "osso";
 	private Attrezzo attrezzoDelCane;
 
-	public Cane(String nome, String presentaz) {
+	public Cane(String nome, String presentaz ,Attrezzo attr) {
 		super(nome, presentaz);
-		this.attrezzoDelCane = new Attrezzo("escrementi", 1);
+		this.attrezzoDelCane = attr;
 	}
 
 	@Override

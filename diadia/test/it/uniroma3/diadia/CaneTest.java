@@ -26,7 +26,7 @@ class CaneTest {
 	void setUp() throws Exception {
 		this.builder = new LabirintoBuilder();
 		this.builder.addStanzaIniziale("Atrio")
-		.addPersonaggio(new Cane("Cane", "Salve sono Buld il cane parlante"))
+		.addPersonaggio(new Cane("Cane", "Salve sono Buld il cane parlante", new Attrezzo("escrementi", 1)))
 		.addStanzaVincente("Atrio")
 		.addAdiacenza("Atrio", "Uscita", Direzione.NORD)
 		.addAdiacenza("Atrio", "Uscita", Direzione.SUD);

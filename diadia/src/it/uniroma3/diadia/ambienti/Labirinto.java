@@ -185,7 +185,7 @@ public class Labirinto {
 	        .addStanzaBuia("Aula N10", "lanterna").addAttrezzo("lanterna",3).addPersonaggio(new Strega("Strega", " Sono Bulabula la permalosa"))
 	        .addStanzaVincente("Biblioteca")
 	        .addStanza("Aula N11").addAttrezzo("chiave", 1)
-	        .addPersonaggio(new Cane("Cane", " Sono Buld il cane parlante"))
+	        .addPersonaggio(new Cane("Cane", " Sono Buld il cane parlante", new Attrezzo("escrementi", 1)))
 	        .addAdiacenza("Atrio", "Biblioteca", Direzione.NORD).addAdiacenza("Atrio", "Aula N11", Direzione.EST).addAdiacenza("Atrio", "Aula N10", Direzione.SUD).addAdiacenza("Atrio", "Laboratorio Campus", Direzione.OVEST)
 	        .addAdiacenza("Aula N11", "Laboratorio Campus", Direzione.EST).addAdiacenza("Aula N11", "Atrio", Direzione.OVEST)
 	        .addAdiacenza("Aula N10", "Aula N11", Direzione.EST).addAdiacenza("Aula N10", "Laboratorio Campus", Direzione.OVEST).addAdiacenza("Aula N10", "Atrio", Direzione.NORD)

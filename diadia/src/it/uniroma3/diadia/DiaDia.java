@@ -1,8 +1,6 @@
 package it.uniroma3.diadia;
 
 
-import java.io.FileNotFoundException;
-
 import it.uniroma3.diadia.ambienti.Labirinto;
 
 
@@ -99,6 +97,7 @@ public class DiaDia {
 			car.carica();
 			Labirinto.LabirintoBuilder builder = new Labirinto.LabirintoBuilder(car);
 			labirinto = builder.getLabirinto();
+			io.mostraMessaggio("caricato correttamente il livello dal file\n");
 			
 		} catch (Exception e) {
 			io.mostraMessaggio("Non è stato costruito il labirinto usando il file\n");
