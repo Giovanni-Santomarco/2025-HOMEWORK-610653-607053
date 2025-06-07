@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
+import it.uniroma3.diadia.DiaDia;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
@@ -27,7 +28,7 @@ import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 public class Stanza {
 
 	static final private int NUMERO_MASSIMO_DIREZIONI = 4;
-	static final private int NUMERO_MASSIMO_ATTREZZI = 10;
+//	static final private int NUMERO_MASSIMO_ATTREZZI = 10;
 
 	private String nome;
 
@@ -98,7 +99,7 @@ public class Stanza {
 	 * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
 	 */
 	public boolean addAttrezzo(Attrezzo attrezzo) {
-		if(this.nome2attrezzo.size() < NUMERO_MASSIMO_ATTREZZI) {
+		if(this.nome2attrezzo.size() < DiaDia.getMaxAttrezzi()) {
 			this.nome2attrezzo.put(attrezzo.getNome(), attrezzo);
 			return true;
 		}

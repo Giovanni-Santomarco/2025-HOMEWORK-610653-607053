@@ -1,6 +1,11 @@
 package it.uniroma3.diadia;
 
 
+import java.io.FileNotFoundException;
+
+import java.io.FileReader;
+import java.util.Properties;
+
 import it.uniroma3.diadia.ambienti.Labirinto;
 
 
@@ -21,16 +26,6 @@ import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
  */
 
 public class DiaDia {
-
-	static final private String MESSAGGIO_BENVENUTO = ""+
-			"Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n" +
-			"Meglio andare al piu' presto in biblioteca a studiare. Ma dov'e'?\n"+
-			"I locali sono popolati da strani personaggi, " +
-			"alcuni amici, altri... chissa!\n"+
-			"Ci sono attrezzi che potrebbero servirti nell'impresa:\n"+
-			"puoi raccoglierli, usarli, posarli quando ti sembrano inutili\n" +
-			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
-			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
 
 	private Partita partita;
@@ -81,7 +76,6 @@ public class DiaDia {
 
 			io.mostraMessaggio("Hai esaurito i CFU...\nGrazie di aver giocato!");
 
-		//forse dovresti mettere setFinita()
 		return this.partita.isFinita();
 	}
 
@@ -89,26 +83,103 @@ public class DiaDia {
 
 	public static void main(String[] argc) {
 		IO io = new IOConsole();
-
 		Labirinto labirinto = null;
+		DiaDia gioco = null;
 		
+		Properties props = new Properties();
+		//con le properties
 		try {
-			CaricatoreLabirinto car = new CaricatoreLabirinto("livelli/livello1.txt");
-			car.carica();
-			Labirinto.LabirintoBuilder builder = new Labirinto.LabirintoBuilder(car);
-			labirinto = builder.getLabirinto();
-			io.mostraMessaggio("caricato correttamente il livello dal file\n");
-			
-		} catch (Exception e) {
-			io.mostraMessaggio("Non è stato costruito il labirinto usando il file\n");
-			Labirinto.LabirintoBuilder builder = new Labirinto.LabirintoBuilder();
-			labirinto = builder.buildBase().getLabirinto();
-
-		}finally {
-			DiaDia gioco = new DiaDia(io, labirinto);
+			props.load(new FileReader("config/configuration.properties"));
+			gioco = new DiaDia(io, loadProps(props));
 			gioco.gioca();
+		} catch (Exception e) {
+			try {	//se non funziona carico direttamente dal file
+				CaricatoreLabirinto car = new CaricatoreLabirinto("livelli/livello1.txt");
+				car.carica();
+				Labirinto.LabirintoBuilder builder = new Labirinto.LabirintoBuilder(car);
+				labirinto = builder.getLabirinto();
+				io.mostraMessaggio("caricato correttamente il livello dal file\n");
+				gioco = new DiaDia(io, labirinto);
+				gioco.gioca();
+				
+			} catch (Exception ee) {	//se non funziona creo il labirinto base
+				io.mostraMessaggio("Non è stato costruito il labirinto usando il file\n");
+				Labirinto.LabirintoBuilder builder = new Labirinto.LabirintoBuilder();
+				labirinto = builder.buildBase().getLabirinto();
+				gioco = new DiaDia(io, labirinto);
+				gioco.gioca();
+			}
+		}
+	}
+	
+	
+	private static Labirinto loadProps(Properties props) {
+		MESSAGGIO_BENVENUTO = props.getProperty("welcome-message", "Per conoscere le istruzioni usa il comando \"aiuto\".");
+		CFU_INIZIALI = parseInt(props.getProperty("starting-cfu"), 7);
+		MAX_PESO_BORSA = parseInt(props.getProperty("max-bag-weight"), 10);
+		MAX_ATTREZZI = parseInt(props.getProperty("max-tools-amount"), 10);
+		SOGLIA_STANZA_MAGICA = parseInt(props.getProperty("default-magic-room-threshold"), 10);
+
+		MESSAGGIO_DONO_MAGO = props.getProperty("wizard-gift-message", "Sei un vero simpaticone, con una mia magica azione, troverai un nuovo oggetto per il tuo borsone!");
+		MESSAGGIO_SCUSE_MAGO = props.getProperty("wizard-apologize-message", "Mi spiace, ma non ho piu' nulla...");
+
+		String mazePath = props.getProperty("maze-configuration-path", "livelli/livello1.txt");
+		CaricatoreLabirinto loader = null;
+		try {
+			loader = new CaricatoreLabirinto(mazePath);
+			loader.carica();
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
 			
+		} catch (FormatoFileNonValidoException e) {
+			e.printStackTrace();
 		}
 
+		return Labirinto.fromLoader(loader);
+	}
+
+
+
+	private static int parseInt(String s, int def) {
+		if (s == null) return def;
+
+		try {
+			return Integer.parseInt(s.trim());
+		} catch (Exception e) {
+			return def;
+		}
+	}
+
+	private static String MESSAGGIO_BENVENUTO;
+	private static int CFU_INIZIALI = 7;
+	private static int MAX_PESO_BORSA = 10;
+	private static int MAX_ATTREZZI = 10;
+	private static int SOGLIA_STANZA_MAGICA = 3;
+	private static String MESSAGGIO_DONO_MAGO;
+	private static String MESSAGGIO_SCUSE_MAGO;
+	
+
+	public static int getCfuIniziali() {
+		return CFU_INIZIALI;
+	}
+
+	public static int getMaxPesoBorsa() {
+		return MAX_PESO_BORSA;
+	}
+
+	public static int getMaxAttrezzi() {
+		return MAX_ATTREZZI;
+	}
+
+	public static int getSogliaStanzaMagica() {
+		return SOGLIA_STANZA_MAGICA;
+	}
+	
+	public static String getMESSAGGIO_DONO_MAGO() {
+		return MESSAGGIO_DONO_MAGO;
+	}
+	
+	public static String getMESSAGGIO_SCUSE_MAGO() {
+		return MESSAGGIO_SCUSE_MAGO;
 	}
 }

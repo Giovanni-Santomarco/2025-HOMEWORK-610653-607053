@@ -24,7 +24,17 @@ public class Labirinto {
     	nome2stanza = new HashMap<>();
     }
     
-    /**
+    public Labirinto(CaricatoreLabirinto loader) {
+    	
+    	stanzaIniziale = loader.getStanzaIniziale();
+    	stanzaFinale = loader.getStanzaVincente();
+    	
+    	if(stanzaFinale == null || stanzaIniziale == null) {
+    		throw new IllegalStateException("non puoi creare un labirinto da un caricatore che non è stato ancora caricato");
+    	}
+	}
+
+	/**
      *restituisce la stanza iniziale
      */
     public Stanza getStanzaIniziale() {
@@ -195,5 +205,10 @@ public class Labirinto {
 		}
 		
 		
+	}
+
+
+	public static Labirinto fromLoader(CaricatoreLabirinto loader) {
+		return new Labirinto(loader);
 	}
 }

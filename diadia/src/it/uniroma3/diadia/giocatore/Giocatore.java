@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.giocatore;
 
+import it.uniroma3.diadia.DiaDia;
 
 /**
  * classe che si occupa dei cfu (delle vite che il giocatore ha)
@@ -9,12 +10,12 @@ package it.uniroma3.diadia.giocatore;
  */
 
 public class Giocatore {
-    static final private int CFU_INIZIALI = 7;
+//    static final private int CFU_INIZIALI = 7;
     private int cfu;
     private Borsa borsa;
     
     public Giocatore() {
-        this.cfu = CFU_INIZIALI;
+        this.cfu = DiaDia.getCfuIniziali();
         this.borsa = new Borsa();
     }
     
