@@ -26,6 +26,16 @@ import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
  */
 
 public class DiaDia {
+	
+	static final private String MESSAGGIO_BENVENUTO = ""+
+			"Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n" +
+			"Meglio andare al piu' presto in biblioteca a studiare. Ma dov'e'?\n"+
+			"I locali sono popolati da strani personaggi, " +
+			"alcuni amici, altri... chissa!\n"+
+			"Ci sono attrezzi che potrebbero servirti nell'impresa:\n"+
+			"puoi raccoglierli, usarli, posarli quando ti sembrano inutili\n" +
+			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
+			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
 
 	private Partita partita;
@@ -114,7 +124,6 @@ public class DiaDia {
 	
 	
 	private static Labirinto loadProps(Properties props) {
-		MESSAGGIO_BENVENUTO = props.getProperty("welcome-message", "Per conoscere le istruzioni usa il comando \"aiuto\".");
 		CFU_INIZIALI = parseInt(props.getProperty("starting-cfu"), 7);
 		MAX_PESO_BORSA = parseInt(props.getProperty("max-bag-weight"), 10);
 		MAX_ATTREZZI = parseInt(props.getProperty("max-tools-amount"), 10);
@@ -150,7 +159,6 @@ public class DiaDia {
 		}
 	}
 
-	private static String MESSAGGIO_BENVENUTO;
 	private static int CFU_INIZIALI = 7;
 	private static int MAX_PESO_BORSA = 10;
 	private static int MAX_ATTREZZI = 10;
